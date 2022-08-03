@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
+    "@replayio/cypress": "^0.2.13",
     "deepmerge": "^4.2.2",
     "smoothscroll-polyfill": "^0.4.4"
   },
