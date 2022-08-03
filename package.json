@@ -29,6 +29,7 @@
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run:chrome": "cypress run --browser chrome",
     "cy:run:firefox": "cypress run --browser firefox",
+    "cy:run:replay": "cypress run --browser 'Replay Firefox' --spec '**/destroying-elements.cy.js'",
     "dev": "yarn watch",
     "docs": "node_modules/.bin/jsdoc -c .jsdoc.js --verbose",
     "esdoc": "esdoc",
@@ -42,6 +43,7 @@
     "test:ci": "yarn test:unit:ci && yarn test:cy:ci:chrome && yarn test:cy:ci:firefox",
     "test:cy:ci:chrome": "start-server-and-test start-test-server http://localhost:9002 cy:run:chrome",
     "test:cy:ci:firefox": "start-server-and-test start-test-server http://localhost:9002 cy:run:firefox",
+    "test:cy:ci:replay": "start-server-and-test start-test-server http://localhost:9002 cy:run:replay",
     "test:cy:watch": "start-server-and-test start-test-server http://localhost:9002 cy:open",
     "test:unit:ci": "jest --coverage",
     "test:unit:watch": "jest --watch",
@@ -50,6 +52,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
+    "@replayio/cypress": "^0.2.13",
     "deepmerge": "^4.2.2",
     "smoothscroll-polyfill": "^0.4.4"
   },
