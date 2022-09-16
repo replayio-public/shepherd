@@ -7,8 +7,136 @@ on:
   workflow_dispatch:
 
 jobs:
+  record:
+    name: Run Chrome Tests (record)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      # Setup Node.js build environment
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18.1
+
+      # Cache dependencies
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+
+      # Install project dependencies
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - uses: bahmutov/npm-install@v1
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+      # confirm there is no Cypress installed
+      - run: yarn cypress cache path
+      # should return empty list of installed versions
+      - run: yarn cypress cache list
+      # restore / cache the binary ourselves on Linux
+      # see https://github.com/actions/cache
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+      # now let's install Cypress binary
+      - run: yarn cypress install
+      - run: yarn cypress cache list
+
+      - name: Build
+        run: yarn build
+
+      # Run Cypress
+      - name: Run Tests
+        run: yarn test:cy:ci:replay
+        env:
+          RECORD_REPLAY_TEST_METRICS: 1
+          RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
+          RECORD_ALL_CONTENT: 1
+          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
+
+      - name: Upload replays
+        if: ${{ always() }}
+        uses: replayio/action-upload@v0.4.3
+        with:
+          public: true
+          api-key: rwk_olNdDXxABSag4FeFWPR1uuxHojx5fpGycskz29bwJqG
+
+  no-record:
+    name: Run Chrome Tests (no record)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      # Setup Node.js build environment
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.18.1
+
+      # Cache dependencies
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+
+      # Install project dependencies
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - uses: bahmutov/npm-install@v1
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+      # confirm there is no Cypress installed
+      - run: yarn cypress cache path
+      # should return empty list of installed versions
+      - run: yarn cypress cache list
+      # restore / cache the binary ourselves on Linux
+      # see https://github.com/actions/cache
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+      # now let's install Cypress binary
+      - run: yarn cypress install
+      - run: yarn cypress cache list
+
+      - name: Build
+        run: yarn build
+
+      # Run Cypress
+      - name: Run Tests
+        run: yarn test:cy:ci:replay
+        env:
+          RECORD_REPLAY_TEST_METRICS: 1
+          RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
+          RECORD_ALL_CONTENT: 1
+          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
+          RECORD_REPLAY_DRIVER: /tmp/not-here
+
   original:
-    name: Run Chrome Tests
+    name: Run Chrome Tests (original)
     runs-on: ubuntu-latest
 
     steps:

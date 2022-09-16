@@ -16,4 +16,4 @@ Running the tests locally without Replay
 
 Running the tests locally with Replay
 
-1. ?
+1. `yarn test:cy:ci:replay`
