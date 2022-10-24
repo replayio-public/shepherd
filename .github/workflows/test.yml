@@ -62,6 +62,7 @@ jobs:
         run: yarn build
 
       - name: Set test start
+        if: always()
         id: recordStart
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
 
@@ -75,6 +76,7 @@ jobs:
           RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
           
       - name: Set upload start
+        if: always()
         id: uploadStart
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
 
@@ -86,6 +88,7 @@ jobs:
           api-key: rwk_olNdDXxABSag4FeFWPR1uuxHojx5fpGycskz29bwJqG
 
       - name: Set duration in output
+        if: always()
         id: end
         run: | 
           echo "recordDuration=$((${{ steps.uploadStart.outputs.time }} - ${{ steps.recordStart.outputs.time }}))" >> $GITHUB_OUTPUT
@@ -206,6 +209,7 @@ jobs:
         run: yarn build
 
       - name: Set test start
+        if: always()
         id: start
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
 
@@ -214,6 +218,7 @@ jobs:
         run: yarn test:cy:ci:chrome
 
       - name: Set duration in output
+        if: always()
         id: end
         run: echo "duration=$((`date +%s` - ${{ steps.start.outputs.time }}))" >> $GITHUB_OUTPUT
 
