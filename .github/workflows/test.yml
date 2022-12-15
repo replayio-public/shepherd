@@ -56,6 +56,9 @@ jobs:
       - run: yarn cypress install
       - run: yarn cypress cache list
 
+      # Install the browser
+      - run: npx @replayio/cypress install
+
       - name: Build
         run: yarn build
 
@@ -138,6 +141,9 @@ jobs:
       - run: yarn cypress install
       - run: yarn cypress cache list
 
+      # Install the browser
+      - run: npx @replayio/cypress install
+
       - name: Build
         run: yarn build
 
@@ -210,6 +216,8 @@ jobs:
       # Run Cypress
       - name: Run Tests
         run: yarn test:cy:ci:chrome
+        env:
+          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
 
       - name: Set duration in output
         if: always()
