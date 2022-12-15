@@ -40,8 +40,6 @@ jobs:
         run: yarn
 
       - uses: bahmutov/npm-install@v1
-        env:
-          CYPRESS_INSTALL_BINARY: 0
       # confirm there is no Cypress installed
       - run: yarn cypress cache path
       # should return empty list of installed versions
@@ -124,8 +122,6 @@ jobs:
         run: yarn
 
       - uses: bahmutov/npm-install@v1
-        env:
-          CYPRESS_INSTALL_BINARY: 0
       # confirm there is no Cypress installed
       - run: yarn cypress cache path
       # should return empty list of installed versions
@@ -187,8 +183,6 @@ jobs:
         run: yarn
 
       - uses: bahmutov/npm-install@v1
-        env:
-          CYPRESS_INSTALL_BINARY: 0
       # confirm there is no Cypress installed
       - run: yarn cypress cache path
       # should return empty list of installed versions
