@@ -42,7 +42,9 @@ jobs:
       - uses: bahmutov/npm-install@v1
       
       # Install the replay browser
-      - run: npx -y @replayio/cypress install
+      - name: Install Replay browser
+        run: npx -y @replayio/cypress install
+        shell: sh
 
       # confirm there is no Cypress installed
       - run: yarn cypress cache path
