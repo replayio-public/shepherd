@@ -60,7 +60,7 @@ jobs:
       
       # Install the replay browser
       - name: Install Replay browser
-        run: 'npx -y @replayio/cypress install'
+        run: bash -c 'npx -y @replayio/cypress install'
 
       - name: Build
         run: yarn build
