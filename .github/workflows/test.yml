@@ -25,14 +25,14 @@ jobs:
         with:
           node-version: 14.18.1
 
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+      # # Cache dependencies
+      # - name: Cache Dependencies
+      #   uses: actions/cache@v2
+      #   id: cache
+      #   with:
+      #     path: |
+      #       **/node_modules
+      #     key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
 
       # Install project dependencies
       - name: Install Dependencies
@@ -109,14 +109,14 @@ jobs:
         with:
           node-version: 14.18.1
 
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+      # # Cache dependencies
+      # - name: Cache Dependencies
+      #   uses: actions/cache@v2
+      #   id: cache
+      #   with:
+      #     path: |
+      #       **/node_modules
+      #     key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
 
       # Install project dependencies
       - name: Install Dependencies
@@ -172,14 +172,14 @@ jobs:
         with:
           node-version: 14.18.1
 
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+      # # Cache dependencies
+      # - name: Cache Dependencies
+      #   uses: actions/cache@v2
+      #   id: cache
+      #   with:
+      #     path: |
+      #       **/node_modules
+      #     key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
 
       # Install project dependencies
       - name: Install Dependencies
