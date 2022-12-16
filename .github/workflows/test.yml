@@ -26,13 +26,13 @@ jobs:
           node-version: 14.18.1
 
       # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
+#      - name: Cache Dependencies
+#        uses: actions/cache@v2
+#        id: cache
+#        with:
+#          path: |
+#            **/node_modules
+#          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
 
       # Install project dependencies
       - name: Install Dependencies
@@ -42,25 +42,25 @@ jobs:
       - uses: bahmutov/npm-install@v1
 
       # confirm there is no Cypress installed
-      - run: yarn cypress cache path
+#      - run: yarn cypress cache path
       # should return empty list of installed versions
-      - run: yarn cypress cache list
+#      - run: yarn cypress cache list
       # restore / cache the binary ourselves on Linux
       # see https://github.com/actions/cache
-      - name: Cache Cypress
-        id: cache-cypress
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+#      - name: Cache Cypress
+#        id: cache-cypress
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.cache/Cypress
+#          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
       # now let's install Cypress binary
-      - run: yarn cypress install
-      - run: yarn cypress cache list
+#      - run: yarn cypress install
+#      - run: yarn cypress cache list
 
       
       # Install the replay browser
-      - name: Install Replay browser
-        run: bash -c 'npx -y @replayio/cypress install'
+#      - name: Install Replay browser
+#        run: bash -c 'npx -y @replayio/cypress install'
 
       - name: Build
         run: yarn build
