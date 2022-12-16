@@ -44,14 +44,6 @@ jobs:
       - run: yarn cypress cache path
       # should return empty list of installed versions
       - run: yarn cypress cache list
-      # restore / cache the binary ourselves on Linux
-      # see https://github.com/actions/cache
-      - name: Cache Cypress
-        id: cache-cypress
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
       # now let's install Cypress binary
       - run: yarn cypress install
       - run: yarn cypress cache list
@@ -126,14 +118,6 @@ jobs:
       - run: yarn cypress cache path
       # should return empty list of installed versions
       - run: yarn cypress cache list
-      # restore / cache the binary ourselves on Linux
-      # see https://github.com/actions/cache
-      - name: Cache Cypress
-        id: cache-cypress
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
       # now let's install Cypress binary
       - run: yarn cypress install
       - run: yarn cypress cache list
@@ -187,14 +171,6 @@ jobs:
       - run: yarn cypress cache path
       # should return empty list of installed versions
       - run: yarn cypress cache list
-      # restore / cache the binary ourselves on Linux
-      # see https://github.com/actions/cache
-      - name: Cache Cypress
-        id: cache-cypress
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
       # now let's install Cypress binary
       - run: yarn cypress install
       - run: yarn cypress cache list
