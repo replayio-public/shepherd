@@ -25,15 +25,6 @@ jobs:
         with:
           node-version: 14.18.1
 
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
-
       # Install project dependencies
       - name: Install Dependencies
         # if: steps.cache.outputs.cache-hit != 'true'
@@ -99,15 +90,6 @@ jobs:
         with:
           node-version: 14.18.1
 
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
-
       # Install project dependencies
       - name: Install Dependencies
         # if: steps.cache.outputs.cache-hit != 'true'
@@ -151,15 +133,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.18.1
-
-      # Cache dependencies
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            **/node_modules
-          key: yarn-${{ hashFiles('**/package.json', 'yarn.lock') }}
 
       # Install project dependencies
       - name: Install Dependencies
