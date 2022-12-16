@@ -36,7 +36,7 @@ jobs:
 
       # Install project dependencies
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - uses: bahmutov/npm-install@v1
@@ -124,7 +124,7 @@ jobs:
 
       # Install project dependencies
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - uses: bahmutov/npm-install@v1
@@ -188,7 +188,7 @@ jobs:
 
       # Install project dependencies
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        # if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
 
       - uses: bahmutov/npm-install@v1
