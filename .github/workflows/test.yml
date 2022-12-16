@@ -43,8 +43,7 @@ jobs:
       
       # Install the replay browser
       - name: Install Replay browser
-        run: npx -y @replayio/cypress install
-        shell: sh
+        run: yarn dlx @replayio/cypress install
 
       # confirm there is no Cypress installed
       - run: yarn cypress cache path
