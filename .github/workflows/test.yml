@@ -259,7 +259,7 @@ jobs:
       - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         # Don't upload metrics for pull requests, so our stats are clean
-        if: ${{ github.ref_name == 'main' }}
+        if: ${{ github.ref_name == 'master' }}
         with:
           endpoint: "https://telemetry.replay.io"
           # Make sure to append the correct project name in the JSON below
